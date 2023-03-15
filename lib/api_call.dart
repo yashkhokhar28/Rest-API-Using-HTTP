@@ -18,7 +18,10 @@ class _ApiCallState extends State<ApiCall> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text("HTTP API",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20),),
+          title: const Text(
+            "HTTP API",
+            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+          ),
           centerTitle: true,
           actions: [
             Padding(
@@ -58,8 +61,8 @@ class _ApiCallState extends State<ApiCall> {
                       Navigator.of(context)
                           .push(
                         MaterialPageRoute(
-                          builder: (context) => AddUser(
-                              jsonDecode(snapshot.data!.body.toString())[index]),
+                          builder: (context) => AddUser(jsonDecode(
+                              snapshot.data!.body.toString())[index]),
                         ),
                       )
                           .then(
@@ -84,7 +87,8 @@ class _ApiCallState extends State<ApiCall> {
                                     children: [
                                       Text(
                                         (jsonDecode(snapshot.data!.body
-                                                .toString())[index]['FirstName'])
+                                                    .toString())[index]
+                                                ['FirstName'])
                                             .toString(),
                                       ),
                                       SizedBox(
@@ -144,8 +148,9 @@ class _ApiCallState extends State<ApiCall> {
                             ),
                             InkWell(
                               onTap: () {
-                                deleteUser((jsonDecode(
-                                    snapshot.data!.body.toString())[index]['id'])).then(
+                                deleteUser((jsonDecode(snapshot.data!.body
+                                        .toString())[index]['id']))
+                                    .then(
                                   (value) {
                                     setState(() {});
                                   },
@@ -166,7 +171,10 @@ class _ApiCallState extends State<ApiCall> {
                 itemCount: jsonDecode(snapshot.data!.body.toString()).length,
               );
             } else {
-              return Center(child: CircularProgressIndicator(color: Colors.black,));
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.black,
+              ));
             }
           },
           future: getAll(),
